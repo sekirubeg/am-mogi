@@ -1,0 +1,53 @@
+.login{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+.login__form__input{
+    margin-top: 3vh;
+
+}
+
+.login__form__input > label{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.login__form__input > input{
+    display: block;
+    padding-left: 10px;
+    width: 45vw;
+    height: 5vh;
+    border:1px solid black;
+}
+
+.login__button{
+    display: block;
+    margin-top: 8vh;
+    width: 45vw;
+    height: 5vh;
+    background-color: #000;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.2s;
+}
+
+.login__button:hover{
+    background-color: #333;
+}
+
+.login__form__link{
+    margin-top: 3vh;
+    font-size: 14px;
+}
+
+.error-message{
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
