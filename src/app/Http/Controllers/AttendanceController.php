@@ -7,6 +7,7 @@ use App\Http\Requests\AttendanceRequest;
 use App\Models\Attendance; // Attendanceモデルを使用する場合
 use App\Models\AttendanceRequestBreak; // AttendanceRequestモデルを使用する場合
 use Illuminate\Support\Facades\Auth;
+use App\Models\AttendanceRequest as AttendanceRequestModel; // AttendanceRequestモデルを使用する場合
 use Carbon\Carbon;
 
 use function PHPSTORM_META\map;
@@ -165,4 +166,22 @@ class AttendanceController extends Controller
 
         return redirect()->route('attendance.detail', ['id' => $id] );
     }
+    public function applicationList(Request $request)
+    {
+        $status = $request->query('review_status'); // approved or pending
+
+        $query = AttendanceRequestModel::with(['attendance.user'])
+            ->where('requested_by', Auth::id());
+
+        if ($status == 1) {
+            $query->where('review_status', 1); // 承認済み
+        } else {
+            $query->where('review_status', 0); // 承認待ち
+        }
+
+        $requests = $query->orderBy('created_at', 'desc')->get();
+
+        return view('attendance.application_list', compact('requests', 'status'));
+    }
+
 }

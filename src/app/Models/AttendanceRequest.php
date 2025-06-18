@@ -13,7 +13,7 @@ class AttendanceRequest extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'requested_by');
     }
     public function attendance()
     {

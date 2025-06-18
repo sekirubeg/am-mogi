@@ -24,7 +24,7 @@
                 @auth
                 <li><a href="{{ route('attendance') }}">勤怠</a></li>
                 <li><a href="{{ route('attendance.list') }}">勤怠一覧</a></li>
-                <li><a href="">申請</a></li>
+                <li><a href="{{ route('attendance.application.list') }}">申請</a></li>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf
                     <button type="submit"
