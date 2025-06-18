@@ -24,7 +24,7 @@
                 <tr>
                     <th>出勤・退勤</th>
                     @if(!$attendance->request)
-                        <td class="start-end">
+                        <td>
                             @if ($attendance->clock_in)
                                 <input type="text"
                                     value="{{ old('clock_in', \Carbon\Carbon::parse($attendance->clock_in)->format('H:i')) }}"
@@ -51,17 +51,17 @@
                             @enderror
                         </td>
                     @else
-                    <td class="start-end">
-                        <p>{{ $attendance_request }}</p>
+                    <td>
+                        {{ \Carbon\Carbon::parse($attendanceRequest->requested_clock_in)->format('H:i') }}
+                    </td>
                     <td>〜</td>
                     <td>
-                        @if ($attendance->clock_out)
-                            <input type="text"
-                                value="{{ old('clock_out', \Carbon\Carbon::parse($attendance->clock_out)->format('H:i')) }}"
-                                name="clock_out" class="end">
+                        {{ \Carbon\Carbon::parse($attendanceRequest->requested_clock_out)->format('H:i') }}
                     </td>
+
                     @endif
                 </tr>
+                @if(!$attendance->request)
                 @foreach ($attendance->attendance_breaks as $break)
                     <tr>
                         <th>休憩 {{ $loop->iteration }}</th>
@@ -106,15 +106,35 @@
                         @enderror
                     </td>
                 </tr>
+                @else
+                @foreach ($attendanceRequestBreaks as $break)
+                    <tr>
+                        <th>休憩 {{ $loop->iteration }}</th>
+                        <td>
+                            {{ \Carbon\Carbon::parse($break->break_start)->format('H:i') }}
+                        </td>
+                        <td>〜</td>
+                        <td>
+                            {{ \Carbon\Carbon::parse($break->break_end)->format('H:i') }}
+                        </td>
+                    </tr>
+                @endforeach
+                @endif
 
                 <tr class="last-row">
                     <th>備考</th>
+                    @if(!$attendance->request)
                     <td>
                         <textarea name="remarks" id="" cols="30" rows="3" style="border: 1px solid #d9d9d9">{{ $attendance->remarks }}</textarea>
                         @error('remarks')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </td>
+                    @else
+                    <td>
+                        {{ $attendanceRequest->remarks }}
+                    </td>
+                    @endif
 
                 </tr>
             </table>

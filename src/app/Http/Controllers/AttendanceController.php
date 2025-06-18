@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\AttendanceRequest;
 use App\Models\Attendance; // Attendanceモデルを使用する場合
+use App\Models\AttendanceRequestBreak; // AttendanceRequestモデルを使用する場合
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
@@ -122,14 +123,17 @@ class AttendanceController extends Controller
     {
         $attendance = Attendance::findOrFail($id);
 
+        $attendanceRequestBreaks = AttendanceRequestBreak::where('attendance_request_id', $attendance->id)->get();
+        $attendanceRequest = $attendance->request; // リレーションがある前提
+
         $date = Carbon::parse($attendance->attendance_date);
         $formatted = [
-            'year' => $date->year,                // 例：2023
-            'month_day' => $date->format('n月j日') // 例：6月1日
+            'year' => $date->year,
+            'month_day' => $date->format('n月j日')
         ];
-        $date->format('y-m-d');
-        return view('attendance.detail', compact('attendance', 'formatted', 'date'));
+        return view('attendance.detail', compact('attendance', 'formatted', 'date', 'attendanceRequest', 'attendanceRequestBreaks'));
     }
+
     public function apply(AttendanceRequest $request, $id)
     {
         $attendance = Attendance::findOrFail($id);
@@ -158,6 +162,7 @@ class AttendanceController extends Controller
                 ]);
             }
         }
-        return redirect()->route('attendance.detail', ['id' => $id]);
+
+        return redirect()->route('attendance.detail', ['id' => $id] );
     }
 }
