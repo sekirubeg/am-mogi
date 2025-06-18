@@ -28,6 +28,7 @@ class CreateAttendancesTable extends Migration
 
             $table->text('remarks')->nullable();
 
+
             $table->unique(['user_id', 'attendance_date']);
 
             $table->timestamps();

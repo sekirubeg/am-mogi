@@ -14,7 +14,7 @@
 <body>
     <header class="header">
         <div class="header__logo" style="margin-left: 2vw; margin-right: 1vw;">
-            <a href="">
+            <a href="{{ route('attendance') }}">
                 <img src="{{ asset('images/logo.svg') }}" alt="Attendance Management Logo">
             </a>
         </div>
@@ -22,8 +22,8 @@
         <nav class="header__nav">
             <ul>
                 @auth
-                <li><a href="">勤怠</a></li>
-                <li><a href="">勤怠一覧</a></li>
+                <li><a href="{{ route('attendance') }}">勤怠</a></li>
+                <li><a href="{{ route('attendance.list') }}">勤怠一覧</a></li>
                 <li><a href="">申請</a></li>
                 <form action="{{ route('logout') }}" method="POST">
                     @csrf

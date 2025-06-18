@@ -11,7 +11,8 @@ class AttendanceRequestBreak extends Model
 
     protected $guarded = [];
 
-    public function attendance_request()
+
+    public function attendanceRequest()
     {
         return $this->belongsTo(AttendanceRequest::class);
     }

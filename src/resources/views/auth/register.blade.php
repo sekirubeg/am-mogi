@@ -9,7 +9,7 @@
 
     <div class="register">
         <div class="register__title">
-            <h1>会員登録</h1>
+            <h1 style="font-weight: bold; font-size:36px">会員登録</h1>
         </div>
 
         <form action="{{ route('register.store') }}" method="POST" class="register__form" novalidate>
@@ -56,7 +56,7 @@
             <button type="submit" class="register__button">登録する</button>
         </form>
         <div class="register__form__link">
-            <a href="{{ route('login') }}" style="text-decoration: none; color:#0073CC;">ログインはこちら</a>
+            <a href="{{ route('login') }}" style="font-size:18px; text-decoration: none; color:#0073CC;">ログインはこちら</a>
         </div>
     </div>
 @endsection

@@ -9,7 +9,7 @@
 
     <div class="login">
         <div class="login__title">
-            <h1>ログイン</h1>
+            <h1 style="font-weight: bold; font-size:36px">ログイン</h1>
         </div>
 
         <form action="{{ route('login.store') }}" method="POST" class="login__form" novalidate>
@@ -38,7 +38,7 @@
             <button type="submit" class="login__button">ログインする</button>
         </form>
         <div class="login__form__link">
-            <a href="{{ route('register') }}" style="text-decoration: none; color:#0073CC;">会員登録はこちら</a>
+            <a href="{{ route('register') }}" style="font-size:18px; text-decoration: none; color:#0073CC;">会員登録はこちら</a>
         </div>
     </div>
 @endsection

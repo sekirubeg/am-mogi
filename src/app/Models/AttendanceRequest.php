@@ -27,4 +27,8 @@ class AttendanceRequest extends Model
     {
         return $this->hasMany(AttendanceBreak::class);
     }
+    public function breaks()
+    {
+        return $this->hasMany(AttendanceRequestBreak::class);
+    }
 }

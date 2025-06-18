@@ -23,4 +23,8 @@ class Attendance extends Model
     {
         return $this->hasMany(AttendanceBreak::class);
     }
+    public function request()
+    {
+        return $this->hasOne(AttendanceRequest::class);
+    }
 }
