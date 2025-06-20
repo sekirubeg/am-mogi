@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AttendController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminLoginController;
 
@@ -8,9 +9,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/login', [AdminLoginController::class, 'login']);
 
     Route::middleware('auth:admin')->group(function () {
-        Route::get('/admin/attendance/list', function () {
-            return view('admin.attendance.index');
-        })->name('attendance.list');
+        Route::get('/attendance/list/{date?}', [AttendController::class, 'index'])->name('attendance.list');
+        Route::get('/attendance/detail/{id}', [AttendController::class, 'detail'])->name('attendance.detail');
+        Route::post('/attendance/application/{id}', [AttendController::class, 'apply'])->name('attendance.application');
     });
 
     Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');

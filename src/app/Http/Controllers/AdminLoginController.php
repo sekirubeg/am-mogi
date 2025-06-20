@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+
 
 class AdminLoginController extends Controller
 {
@@ -13,7 +16,7 @@ class AdminLoginController extends Controller
         return view('admin.auth.login');
     }
 
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -22,7 +25,7 @@ class AdminLoginController extends Controller
             return redirect()->route('admin.attendance.list');
         }
 
-        return back()->withErrors(['email' => 'メールアドレスまたはパスワードが正しくありません。']);
+        return back()->withErrors(['email' => 'ログイン情報が登録されていません']);
     }
 
 }
