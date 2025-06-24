@@ -164,6 +164,17 @@ class AttendanceController extends Controller
             }
         }
 
+        $existingNewBreaks = $request->input('new_breaks', []);
+        foreach ($existingNewBreaks as $breakData) {
+            if (!empty($breakData['break_start']) || !empty($breakData['break_end'])) {
+                $attendanceRequest->breaks()->create([
+                    'break_start' => $date->format('y-m-d') . ' ' . $breakData['break_start'] ?? null,
+                    'break_end' => $date->format('y-m-d') . ' ' . $breakData['break_end'] ?? null,
+                ]);
+            }
+        }
+
+
         return redirect()->route('attendance.detail', ['id' => $id] );
     }
     public function applicationList(Request $request)

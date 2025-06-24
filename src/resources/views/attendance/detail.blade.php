@@ -131,7 +131,7 @@
                         @enderror
                     </td>
                     @else
-                    <td>
+                    <td colspan="2">
                         {{ $attendanceRequest->remarks }}
                     </td>
                     @endif
@@ -142,7 +142,7 @@
                 @if (!$attendance->request)
                     <button type="submit" class="btn btn-primary"
                         style="background-color: #000000 ; padding:5px 40px; font-size:20px;">修正</button>
-                @elseif($attendance->review_status == 0)
+                @elseif($attendanceRequest->review_status == 0)
                     <p style="color: red;">*承認待ちのため修正はできません。</p>
                 @else
                     <p style="color: red;">*承認済み</p>
