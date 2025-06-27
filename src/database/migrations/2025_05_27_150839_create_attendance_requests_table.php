@@ -33,7 +33,7 @@ class CreateAttendanceRequestsTable extends Migration
             $table->timestamp('requested_clock_out')->nullable();
 
             $table->boolean(('review_status'))->default(false);
-
+            $table->text('remarks')->nullable();
             $table->timestamp('reviewed_at')->nullable();
             $table->timestamp('requested_at')->useCurrent();
 

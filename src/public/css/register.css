@@ -14,6 +14,7 @@
 .register__form__input > label{
     font-weight: bold;
     margin-bottom: 10px;
+    font-size: 22px;
 }
 
 .register__form__input > input{
@@ -22,19 +23,21 @@
     width: 45vw;
     height: 5vh;
     border:1px solid black;
+    background-color:  #f0eff2;
 }
 
 .register__button{
     display: block;
     margin-top: 12vh;
     width: 45vw;
-    height: 5vh;
+    height: 6vh;
     background-color: #000;
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 22px;
     transition: 0.2s;
+    font-weight: bold;
 }
 
 .register__button:hover{

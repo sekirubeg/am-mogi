@@ -10,11 +10,11 @@
     <h3>登録していただいたメールアドレスに認証メールを送付しました。</h3>
     <h3>メール認証を完了してください。</h3>
 
-    <a href="">認証はこちらから</a>
+    <a href="" class="button">認証はこちらから</a>
 
     <form method="POST" action="{{ route('verification.send') }}">
         @csrf
-        <button type="submit">確認メールを再送信</button>
+        <button type="submit" class="confirm-button">確認メールを再送する</button>
     </form>
 </div>
 @endsection

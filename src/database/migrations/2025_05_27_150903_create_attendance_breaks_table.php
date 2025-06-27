@@ -19,7 +19,7 @@ class CreateAttendanceBreaksTable extends Migration
                 ->constrained()
                 ->onDelete('cascade');
             $table->timestamp('break_start');
-            $table->timestamp('break_end');
+            $table->timestamp('break_end')->nullable();
             $table->timestamps();
         });
     }

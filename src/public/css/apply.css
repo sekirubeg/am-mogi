@@ -1,0 +1,69 @@
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 10vh;
+    text-align: left;
+    border-left: 9px solid #000;
+    padding: 5px 20px;
+    margin-bottom: 5vh;
+}
+
+.container {
+    width: 900px;
+    margin: 0 auto;
+    margin-bottom: 5vh;
+}
+
+/* タブ部分 */
+.tabs {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    border-bottom: 2px solid #000000;
+}
+
+.tab {
+    margin-left: 2vw;
+    background: none;
+    border: none;
+    font-size: 16px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    text-decoration:none;
+    color: #000000;
+    font-weight: 400;
+}
+
+
+/* テーブルスタイル */
+.application-table {
+    margin-top: 4vh;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.application-table th,
+.application-table td {
+    padding: 15px 12px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+.application-table thead {
+    font-weight: 700;
+    color: #737373;
+    font-size: 700;
+}
+.application-table tbody {
+  color: #737373;
+  font-weight: 700;
+  font-size: 16px;
+}
+.tab.active {
+    font-weight: bold;
+}
