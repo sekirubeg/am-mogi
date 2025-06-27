@@ -92,9 +92,9 @@
                     </td>
                     <td>〜</td>
                     <td>
-                        <input type="text" name="new_breaks[0][break_start]" class="start"
-                            value="{{ old('new_breaks.0.break_start') }}">
-                        @error('new_breaks.0.break_start')
+                        <input type="text" name="new_breaks[0][break_end]" class="end"
+                        value="{{ old('new_breaks.0.break_end') }}">
+                        @error('new_breaks.0.break_end')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </td>

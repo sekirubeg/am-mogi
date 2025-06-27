@@ -20,8 +20,8 @@
         </thead>
             @foreach($staff as $staff)
             <tr>
-                <td>{{ $staff->name }}</td>
-                <td>{{ $staff->email }}</td>
+                <td style="color:#737373;">{{ $staff->name }}</td>
+                <td style="color:#737373;">{{ $staff->email }}</td>
                 <td>
                     <a href="{{ route('admin.staff.attendance', $staff->id) }}" style="text-decoration: none; color:#000000; font-weight:bold;">詳細</a>
                 </td>

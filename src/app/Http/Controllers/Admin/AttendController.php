@@ -177,4 +177,69 @@ class AttendController extends Controller
             'message' => '承認完了'
         ]);
     }
+
+    public function exportCsv(Request $request){
+        $user = User::findOrFail($request->user_id);
+        $requestmonth = $request->month; // '2025-06'
+        $month = Carbon::createFromFormat('Y-m', $requestmonth);
+        $startDate = $month->copy()->startOfMonth();
+        $endDate = $month->copy()->endOfMonth();
+        // その月の全出勤データを取得（リレーション付きで）
+        $attendances = Attendance::with('attendance_breaks')
+            ->where('user_id', $user->id)
+            ->whereBetween('attendance_date', [$startDate->toDateString(), $endDate->toDateString()])
+            ->get()
+            ->keyBy('attendance_date');
+        $datesInMonth = collect();
+        for ($date = $startDate->copy(); $date->lte($endDate); $date->addDay()) {
+            $datesInMonth->push($date->copy());
+        }
+
+        $csvHeader = ['日付', '出勤', '退勤', '休憩', '実働'];
+        $fileName = "{$user->name}さん_{$month->format('Y年m月')}_勤怠一覧.csv";
+        $headers = [
+            "Content-Type" => "text/csv",
+            "Content-Disposition" => "attachment; filename=\"$fileName\"",
+        ];
+        $callback = function () use ($datesInMonth, $attendances) {
+            $handle = fopen('php://output', 'w');
+            fputcsv($handle, ['日付', '出勤', '退勤', '休憩', '実働']);
+
+            foreach ($datesInMonth as $date) {
+                $a = $attendances[$date->toDateString()] ?? null;
+
+                if ($a && $a->clock_in && $a->clock_out) {
+                    // 総休憩時間（秒数）
+                    $totalBreakSeconds = $a->attendance_breaks->sum(function ($break) {
+                        return $break->break_end && $break->break_start
+                            ? Carbon::parse($break->break_end)->diffInSeconds($break->break_start)
+                            : 0;
+                    });
+
+                    $workSeconds = Carbon::parse($a->clock_out)->diffInSeconds($a->clock_in) - $totalBreakSeconds;
+
+                    fputcsv($handle, [
+                        $date->locale('ja')->isoFormat('YYYY/MM/DD (dd)'),
+                        Carbon::parse($a->clock_in)->format('H:i'),
+                        Carbon::parse($a->clock_out)->format('H:i'),
+                        gmdate('H:i', $totalBreakSeconds),
+                        gmdate('H:i', $workSeconds),
+                    ]);
+                } else {
+                    // 勤怠なしの場合
+                    fputcsv($handle, [
+                        $date->locale('ja')->isoFormat('YYYY/MM/DD (dd)'),
+                        '',
+                        '',
+                        '',
+                        '',
+                    ]);
+                }
+            }
+
+            fclose($handle);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
 }

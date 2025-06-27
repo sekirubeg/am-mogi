@@ -33,6 +33,7 @@
                     @php
                         $dateStr = $date->format('Y-m-d');
                         $a = $attendancesByDate[$dateStr] ?? null;
+                        $totalBreak = 0;
                         if ($a) {
                             $totalBreak = $a->attendance_breaks->sum(function($b) {
                             return $b->break_end && $b->break_start
@@ -58,6 +59,7 @@
                         @endif
                     </td>
                     <td>
+
                         @if ($a)
                             <a href="{{route('admin.attendance.detail', ['id' => $a->id]) }}" style="text-decoration: none; color:#000000;">詳細</a>
                         @endif
@@ -68,6 +70,9 @@
     </table>
     <div class="mt-4 mb-5 text-end" >
         <form action="{{ route('admin.attendance.staff.csv') }}" method="post" >
+            @csrf
+            <input type="hidden" name="user_id" value="{{ $user->id }}">
+            <input type="hidden" name="month" value="{{ $month }}">
             <button type="submit" class="btn btn-primary" style="background-color: #000000; padding:7px 40px; border-radius:3px; font-size:22px;">CSV出力</button>
         </form>
     </div>

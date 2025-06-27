@@ -17,6 +17,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/attendance/application.list', [AttendController::class, "list"])->name('attendance.application.list');
         Route::get('/attendance/show/{id}',[AttendController::class, "approve"])->name('attendance.show');
         Route::post('/attendance/approve/{id}', [AttendController::class, "update"])->name('attendance.approve');
+        Route::post('/attendance/staff/csv', [AttendController::class, 'exportCsv'])->name('attendance.staff.csv');
     });
 
     Route::post('/logout', [AdminLoginController::class, 'logout'])->name('logout');
