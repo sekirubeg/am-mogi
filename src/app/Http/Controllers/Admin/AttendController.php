@@ -131,9 +131,12 @@ class AttendController extends Controller
 
     public function approve($id){
         $attendance = Attendance::findOrFail($id);
-
-        $attendanceRequestBreaks = AttendanceRequestBreak::where('attendance_request_id', $attendance->id)->get();
         $attendanceRequest = $attendance->request; // リレーションがある前提
+
+        $attendanceRequestBreaks = collect();
+        if ($attendanceRequest) {
+            $attendanceRequestBreaks = AttendanceRequestBreak::where('attendance_request_id', $attendanceRequest->id)->get();
+        }
 
         $date = Carbon::parse($attendance->attendance_date);
         $formatted = [

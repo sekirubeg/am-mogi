@@ -36,7 +36,7 @@
                     <td>{{ \Carbon\Carbon::parse($request->attendance->attendance_date)->format('Y/m/d') }}</td>
                     <td>{{ $request->remarks }}</td>
                     <td>{{ \Carbon\Carbon::parse($request->created_at)->format('Y/m/d') }}</td>
-                    <td><a href="{{ route('admin.attendance.show', $request->id) }}" style="color:#000000; font-weight:700; text-decoration:none;">詳細</a></td>
+                    <td><a href="{{ route('admin.attendance.show', $request->attendance_id) }}" style="color:#000000; font-weight:700; text-decoration:none;">詳細</a></td>
                 </tr>
             @endforeach
         </tbody>

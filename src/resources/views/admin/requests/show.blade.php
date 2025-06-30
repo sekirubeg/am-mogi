@@ -59,10 +59,17 @@
                     </td>
                 </tr>
             </table>
+            @if ($attendanceRequest->review_status == 0)
             <div class="button-group">
                 <button type="submit" class="btn btn-primary"
                     style="background-color: #000000 ; padding:5px 40px; font-size:20px;" id="approve-button">承認</button>
             </div>
+            @else
+            <div class="button-group">
+                <button class="btn btn-primary"
+                style="background-color: #696969 ; padding:5px 40px; font-size:20px;" id="approve-button"disabled>承認済み</button>
+            </div>
+            @endif
             <input type="hidden" name="date" value="{{ $date }}">
         </form>
     </div>
