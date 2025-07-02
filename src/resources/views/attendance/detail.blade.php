@@ -26,9 +26,7 @@
                     @if(!$attendance->request)
                         <td>
                             @if ($attendance->clock_in)
-                                <input type="text"
-                                    value="{{ old('clock_in', \Carbon\Carbon::parse($attendance->clock_in)->format('H:i')) }}"
-                                    name="clock_in" class="start">
+                                <input type="text" value="{{ old('clock_in', \Carbon\Carbon::parse($attendance->clock_in)->format('H:i')) }}" name="clock_in" class="start">
                             @else
                                 <span class="text-muted">未登録</span>
                             @endif
@@ -39,9 +37,7 @@
                         <td>〜</td>
                         <td>
                             @if ($attendance->clock_out)
-                                <input type="text"
-                                    value="{{ old('clock_out', \Carbon\Carbon::parse($attendance->clock_out)->format('H:i')) }}"
-                                    name="clock_out" class="end">
+                                <input type="text" value="{{ old('clock_out', \Carbon\Carbon::parse($attendance->clock_out)->format('H:i')) }}" name="clock_out" class="end">
                             @else
                                 <span class="text-muted">未登録</span>
                             @endif
@@ -66,18 +62,14 @@
                     <tr>
                         <th>休憩 {{ $loop->iteration }}</th>
                         <td>
-                            <input type="text"
-                                value="{{ old("breaks.{$break->id}.break_start", \Carbon\Carbon::parse($break->break_start)->format('H:i')) }}"
-                                name="breaks[{{ $break->id }}][break_start]" class="start">
+                            <input type="text" value="{{ old("breaks.{$break->id}.break_start", \Carbon\Carbon::parse($break->break_start)->format('H:i')) }}" name="breaks[{{ $break->id }}][break_start]" class="start">
                             @error("breaks.{$break->id}.break_start")
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </td>
                         <td>〜</td>
                         <td>
-                            <input type="text"
-                                value="{{ old("breaks.{$break->id}.break_end", \Carbon\Carbon::parse($break->break_end)->format('H:i')) }}"
-                                name="breaks[{{ $break->id }}][break_end]" class="end">
+                            <input type="text" value="{{ old("breaks.{$break->id}.break_end", \Carbon\Carbon::parse($break->break_end)->format('H:i')) }}" name="breaks[{{ $break->id }}][break_end]" class="end">
                             @error("breaks.{$break->id}.break_end")
                                 <div class="error">{{ $message }}</div>
                             @enderror
