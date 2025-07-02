@@ -123,10 +123,11 @@ class AttendanceController extends Controller
     public function detail($id)
     {
         $attendance = Attendance::findOrFail($id);
-
-        $attendanceRequestBreaks = AttendanceRequestBreak::where('attendance_request_id', $attendance->id)->get();
         $attendanceRequest = $attendance->request; // リレーションがある前提
-
+        $attendanceRequestBreaks = collect();
+        if ($attendanceRequest) {
+            $attendanceRequestBreaks = AttendanceRequestBreak::where('attendance_request_id', $attendanceRequest->id)->get();
+        }
         $date = Carbon::parse($attendance->attendance_date);
         $formatted = [
             'year' => $date->year,
@@ -138,7 +139,6 @@ class AttendanceController extends Controller
     public function apply(AttendanceRequest $request, $id)
     {
         $attendance = Attendance::findOrFail($id);
-        $date = $request->input('date'); // ← OK
         $date = Carbon::parse($attendance->attendance_date);
 
 

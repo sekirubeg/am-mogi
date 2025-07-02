@@ -10,7 +10,7 @@
     <h3>登録していただいたメールアドレスに認証メールを送付しました。</h3>
     <h3>メール認証を完了してください。</h3>
 
-    <a href="" class="button">認証はこちらから</a>
+    <a href="https://mailtrap.io/" class="button">認証はこちらから</a>
 
     <form method="POST" action="{{ route('verification.send') }}">
         @csrf
