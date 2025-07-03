@@ -23,12 +23,12 @@ php artisan db:seed
 ```
 ## mail認証のためのmailtrapの設定
 
-## Mailtrap のアカウント作成
+### Mailtrap のアカウント作成
 https://mailtrap.io/ にアクセスし、無料アカウントを作成してください。<br>
 その後ダッシュボードにログインし、Inbox を作成してください<br>
 そしてInbox の「SMTP Settings」を開き、Laravel 用の接続情報を確認してください。
 
-## .env にSMTP情報を設定
+### .env にSMTP情報を設定
 Mailtrapの設定にある「Laravel 7.x and 8.x」用の情報を、.env に貼り付けます。
 ```
 MAIL_MAILER=smtp
