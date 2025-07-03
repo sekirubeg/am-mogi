@@ -21,6 +21,26 @@ php artisan key:generate
 php artisan migrate
 php artisan db:seed
 ```
+## mail認証のためのmailtrapの設定
+
+## Mailtrap のアカウント作成
+https://mailtrap.io/ にアクセスし、無料アカウントを作成してください。<br>
+その後ダッシュボードにログインし、Inbox を作成してください<br>
+そしてInbox の「SMTP Settings」を開き、Laravel 用の接続情報を確認してください。
+
+## .env にSMTP情報を設定
+Mailtrapの設定にある「Laravel 7.x and 8.x」用の情報を、.env に貼り付けます。
+```
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+```
+*MAIL_USERNAME と MAIL_PASSWORD は Mailtrap のダッシュボードから取得してください。
+
+
 ## test 環境構築
 ```
 docker-compose exec mysql bash
@@ -31,7 +51,7 @@ mysql -u root -p
 ### PHP.Unitによるテスト
 ※日時取得機能テストは、javaScriptの変化を捉えなければならず、<br>
 php.unitだけではテストすることが不可能だったため、テストから除外しています。
-## configファイルの変更　
+### configファイルの変更　
 configディレクトリの中のdatabase.phpを開き、mysqlの配列部分をコピーして以下に新たにmysql_testを作成します。<br>
 下記のようにしてください。
 ```
@@ -59,11 +79,11 @@ configディレクトリの中のdatabase.phpを開き、mysqlの配列部分を
 +             ]) : [],
 + ],
 ```
-## テスト用の.envファイル作成
+### テスト用の.envファイル作成
 ```
 cp .env .env.testing
 ```
-## ファイルの作成ができたたら、.env.testingファイルの文頭部分にあるAPP_ENVとAPP_KEYを編集します。
+### ファイルの作成ができたたら、.env.testingファイルの文頭部分にあるAPP_ENVとAPP_KEYを編集します。
 ```
 APP_NAME=Laravel
 - APP_ENV=local
@@ -73,9 +93,9 @@ APP_NAME=Laravel
 APP_DEBUG=true
 APP_URL=http://localhost
 ```
-## 次に、.env.testingにデータベースの接続情報を加えてください
+### 次に、.env.testingにデータベースの接続情報を加えてください
 ```
-  DB_CONNECTION=mysql
+  DB_CONNECTION=test
   DB_HOST=mysql
   DB_PORT=3306
 - DB_DATABASE=laravel_db
@@ -85,7 +105,7 @@ APP_URL=http://localhost
 + DB_USERNAME=root
 + DB_PASSWORD=root
 ```
-## 最後に以下のコマンドを実行してください
+### 最後に以下のコマンドを実行してください
 
 ```
 php artisan key:generate --env=testing
