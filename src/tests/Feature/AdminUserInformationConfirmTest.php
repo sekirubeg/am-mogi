@@ -20,7 +20,7 @@ class AdminUserInformationConfirmTest extends TestCase
         // 管理者とユーザーを作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@amail.com',
             'password' => 'password',
         ]);
         // 一般ユーザー複数作成
@@ -44,7 +44,7 @@ class AdminUserInformationConfirmTest extends TestCase
         // 管理者とユーザーを作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@amail.com',
             'password' => 'password',
         ]);
         $user = User::factory()->create([
@@ -89,7 +89,7 @@ class AdminUserInformationConfirmTest extends TestCase
         // 管理者を作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@amail.com',
             'password' => 'password'
         ]);
         $user = User::factory()->create([
@@ -132,7 +132,7 @@ class AdminUserInformationConfirmTest extends TestCase
         // 管理者を作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@amail.com',
             'password' => 'password'
         ]);
         $user = User::factory()->create([
@@ -175,7 +175,7 @@ class AdminUserInformationConfirmTest extends TestCase
         // 管理者とユーザーを作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@amail.com',
             'password' => 'password',
         ]);
         $user = User::factory()->create([

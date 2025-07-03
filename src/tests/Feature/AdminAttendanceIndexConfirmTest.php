@@ -19,7 +19,7 @@ class AdminAttendanceIndexConfirmTest extends TestCase
         // 管理者とユーザーを作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@cmail.com',
             'password' => 'password']);
         $user1 = User::factory()->create(['name' => 'ユーザー一郎']);
         $user2 = User::factory()->create(['name' => 'ユーザー二郎']);
@@ -66,7 +66,7 @@ class AdminAttendanceIndexConfirmTest extends TestCase
         // 管理者を作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@cmail.com',
             'password' => 'password'
         ]);
         // 管理者ログイン
@@ -87,7 +87,7 @@ class AdminAttendanceIndexConfirmTest extends TestCase
         // 管理者を作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@cmail.com',
             'password' => 'password'
         ]);
         // 管理者ログイン
@@ -107,7 +107,7 @@ class AdminAttendanceIndexConfirmTest extends TestCase
         /// 管理者を作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@cmail.com',
             'password' => 'password'
         ]);
         // 管理者ログイン

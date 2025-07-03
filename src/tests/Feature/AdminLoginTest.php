@@ -12,7 +12,7 @@ use Tests\TestCase;
 class AdminLoginTest extends TestCase
 {
     use RefreshDatabase;
-    protected function createAdmin($email = 'admin@gmail.com', $password = 'adminpassword')
+    protected function createAdmin($email = 'admin@email.com', $password = 'adminpassword')
     {
         return Admin::factory()->create([
             'name' => 'Admin User',
@@ -27,7 +27,7 @@ class AdminLoginTest extends TestCase
         $adminData = [
             'password' => 'adminpassword',
         ];
-        $this->createAdmin('admin@gmail.com', 'password');
+        $this->createAdmin('admin@email.com', 'password');
         $response = $this->post('/admin/login', $adminData);
 
         $response->assertStatus(302);
@@ -39,9 +39,9 @@ class AdminLoginTest extends TestCase
     {
         $this->withoutMiddleware(VerifyCsrfToken::class);
         $adminData = [
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@email.com',
         ];
-        $this->createAdmin('admin@gmail.com', 'password');
+        $this->createAdmin('admin@email.com', 'password');
         $response = $this->post('/admin/login', $adminData);
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['password']);
@@ -55,7 +55,7 @@ class AdminLoginTest extends TestCase
             'email' => 'wrong@gmail.com',
             'password' => 'adminpassword',
         ];
-        $this->createAdmin('admin@gmail.com', 'password');
+        $this->createAdmin('admin@email.com', 'password');
         $response = $this->post('/admin/login', $adminData);
         $response->assertStatus(302);
         $response->assertSessionHasErrors(['email']);

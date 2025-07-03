@@ -22,7 +22,7 @@ class AdminReviseConfirmTest extends TestCase
         // 管理者とユーザーを作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@bmail.com',
             'password' => 'password',
         ]);
 
@@ -84,7 +84,7 @@ class AdminReviseConfirmTest extends TestCase
         // 管理者とユーザーを作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@bmail.com',
             'password' => 'password',
         ]);
 
@@ -142,7 +142,7 @@ class AdminReviseConfirmTest extends TestCase
         // 管理者とユーザーを作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@bmail.com',
             'password' => 'password',
         ]);
         $user1 = User::factory()->create();
@@ -164,7 +164,7 @@ class AdminReviseConfirmTest extends TestCase
             'review_status' => 0,
         ]);
         // 勤怠修正詳細ページへアクセス
-        $response = $this->get(route('admin.attendance.show', ['id' => $attendance_request->id]));
+        $response = $this->get(route('admin.attendance.show', ['id' => $attendance->id]));
         // ステータス確認
         $response->assertStatus(200);
         $response->assertSee($user1->name);
@@ -182,7 +182,7 @@ class AdminReviseConfirmTest extends TestCase
         // 管理者とユーザーを作成
         $admin = Admin::factory()->create([
             'name' => '管理者太郎',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin@bmail.com',
             'password' => 'password',
         ]);
         $user1 = User::factory()->create();
