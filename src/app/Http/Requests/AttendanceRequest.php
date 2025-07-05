@@ -25,8 +25,8 @@ class AttendanceRequest extends FormRequest
     {
         return [
             //
-            'clock_in' => ['nullable', 'date_format:H:i'],
-            'clock_out' => ['nullable', 'date_format:H:i', 'after_or_equal:clock_in'],
+            'clock_in' => ['required', 'date_format:H:i'],
+            'clock_out' => ['required', 'date_format:H:i', 'after_or_equal:clock_in'],
             'breaks.*.break_start' => ['nullable', 'date_format:H:i', 'after_or_equal:clock_in', 'before_or_equal:clock_out'],
             'breaks.*.break_end' => ['nullable', 'date_format:H:i', 'after_or_equal:breaks.*.break_start', 'before_or_equal:clock_out'],
             'new_breaks.*.break_start' => ['nullable', 'date_format:H:i', 'after_or_equal:clock_in', 'before_or_equal:clock_out'],
@@ -37,6 +37,8 @@ class AttendanceRequest extends FormRequest
     public function messages()
     {
         return [
+            'clock_in.required' => '出勤時間が登録されていない場合は申請できません。',
+            'clock_out.required' => '退勤時間が登録されていない場合は申請できません。',
             'clock_in.date_format' => '出勤時間はHH:MM形式で入力してください',
             'clock_out.date_format' => '退勤時間はHH:MM形式で入力してください',
             'clock_out.after_or_equal' => '出勤時間もしくは退勤時間が不適切な値です',
