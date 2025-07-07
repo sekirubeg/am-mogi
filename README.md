@@ -21,6 +21,12 @@ php artisan key:generate
 php artisan migrate
 php artisan db:seed
 ```
+権限取得のため以下のコマンドも入力してください
+```
+cd /var/www/storage/
+chmod -R 777 .
+```
+
 ## mail認証のためのmailtrapの設定
 
 ### Mailtrap のアカウント作成
@@ -122,7 +128,9 @@ MySQL 8.0.40
 ```
 ## URL
 ```
-開発環境: http://localhost/
+開発環境
+  管理者ログイン画面：http://localhost/admin/login
+  一般ログイン画面：http://localhost/login
 phpMyAdmin: http://localhost:8080/
 ```
 ## ER図
