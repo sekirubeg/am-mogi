@@ -20,18 +20,24 @@ class UserSeeder extends Seeder
             'name' => 'ユーザーA',
             'email' => 'userA@example.com',
             'password' => Hash::make('sekirubeg'),
+            'email_verified_at' => now(),
+
         ]);
 
         User::create([
             'name' => 'ユーザーB',
             'email' => 'userB@example.com',
             'password' => Hash::make('sekirubeg'),
+            'email_verified_at' => now(),
+
         ]);
 
         User::create([
             'name' => 'ユーザーC',
             'email' => 'userC@example.com',
             'password' => Hash::make('sekirubeg'),
+            'email_verified_at' => now(),
+
         ]);
     }
 
