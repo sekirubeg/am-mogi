@@ -26,6 +26,15 @@ php artisan db:seed
 cd /var/www/storage/
 chmod -R 777 .
 ```
+コピーした.envファイルに以下の情報を入力してください
+```
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=laravel_db
+DB_USERNAME=laravel_user
+DB_PASSWORD=laravel_pass
+```
 
 ## mail認証のためのmailtrapの設定
 
@@ -55,64 +64,8 @@ mysql -u root -p
 > SHOW DATABASES;
 ```
 ### PHP.Unitによるテスト
-※日時取得機能テストは、javaScriptの変化を捉えなければならず、<br>
-php.unitだけではテストすることが不可能だったため、テストから除外しています。
-### configファイルの変更　
-configディレクトリの中のdatabase.phpを開き、mysqlの配列部分をコピーして以下に新たにmysql_testを作成します。<br>
-下記のようにしてください。
-```
-'mysql' => [
-// 中略
-],
 
-+ 'mysql_test' => [
-+             'driver' => 'mysql',
-+             'url' => env('DATABASE_URL'),
-+             'host' => env('DB_HOST', '127.0.0.1'),
-+             'port' => env('DB_PORT', '3306'),
-+             'database' => 'test',
-+             'username' => 'root',
-+             'password' => 'root',
-+             'unix_socket' => env('DB_SOCKET', ''),
-+             'charset' => 'utf8mb4',
-+             'collation' => 'utf8mb4_unicode_ci',
-+             'prefix' => '',
-+             'prefix_indexes' => true,
-+             'strict' => true,
-+             'engine' => null,
-+             'options' => extension_loaded('pdo_mysql') ? array_filter([
-+                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-+             ]) : [],
-+ ],
-```
-### テスト用の.envファイル作成
-```
-cp .env .env.testing
-```
-### ファイルの作成ができたたら、.env.testingファイルの文頭部分にあるAPP_ENVとAPP_KEYを編集します。
-```
-APP_NAME=Laravel
-- APP_ENV=local
-- APP_KEY=base64:vPtYQu63T1fmcyeBgEPd0fJ+jvmnzjYMaUf7d5iuB+c=
-+ APP_ENV=test
-+ APP_KEY=
-APP_DEBUG=true
-APP_URL=http://localhost
-```
-### 次に、.env.testingにデータベースの接続情報を加えてください
-```
-  DB_CONNECTION=test
-  DB_HOST=mysql
-  DB_PORT=3306
-- DB_DATABASE=laravel_db
-- DB_USERNAME=laravel_user
-- DB_PASSWORD=laravel_pass
-+ DB_DATABASE=test
-+ DB_USERNAME=root
-+ DB_PASSWORD=root
-```
-### 最後に以下のコマンドを実行してください
-
+### PHP.Unitによるテストをを行うため以下のコマンドを実行してください
 ```
 php artisan key:generate --env=testing
 php artisan config:clear
