@@ -50,7 +50,6 @@
                                 <input type="text"
                                 name="clock_out" class="end">
                             @endif
-
                             @error('clock_out')
                                 <div class="error">{{ $message }}</div>
                             @enderror
