@@ -37,7 +37,7 @@ class AttendanceRequest extends FormRequest
     public function messages()
     {
         return [
-            'clock_in.required' => '出勤時間が登録されていない場合は申請できません。',
+            'clock_in.required' => '出勤時間が登録されていない合は申請できません。',
             'clock_out.required' => '退勤時間が登録されていない場合は申請できません。',
             'clock_in.date_format' => '出勤時間はHH:MM形式で入力してください',
             'clock_out.date_format' => '退勤時間はHH:MM形式で入力してください',
