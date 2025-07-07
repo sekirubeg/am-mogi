@@ -24,7 +24,7 @@ php artisan db:seed
 権限取得のため以下のコマンドも入力してください
 ```
 cd /var/www/storage/
-chmod -R 777
+chmod -R 777 .
 ```
 
 ## mail認証のためのmailtrapの設定
