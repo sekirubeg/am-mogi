@@ -131,7 +131,7 @@ MySQL 8.0.40
 開発環境
   管理者ログイン画面：http://localhost/admin/login
     ・ 管理者のメールアドレス：admin@example.com
-    ・管理者のパスワード：sekirubeg
+    ・ 管理者のパスワード：sekirubeg
   一般ログイン画面：http://localhost/login
 phpMyAdmin: http://localhost:8080/
 ```
