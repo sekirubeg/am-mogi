@@ -47,7 +47,8 @@
                                     value="{{ old('clock_out', \Carbon\Carbon::parse($attendance->clock_out)->format('H:i')) }}"
                                     name="clock_out" class="end">
                             @else
-                                <span class="text-muted">未登録</span>
+                                <input type="text"
+                                name="clock_out" class="end">
                             @endif
 
                             @error('clock_out')
