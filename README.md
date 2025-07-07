@@ -71,6 +71,26 @@ php artisan migrate --env=testing
 php artisan test
 ```
 
+## シーディングされているデータ
+```
+管理者
+    ・ 管理者のメールアドレス：admin@example.com
+    ・ 管理者のパスワード：sekirubeg
+
+一般ユーザー
+    （１）name     : ユーザ-A
+         email    : userA@example.com
+         password : sekirubeg
+    （２）name     : ユーザーB
+         email    : userB@example.com
+         password : sekirubeg
+    （３）name     : ユーザ-C
+         email    : userC@example.com
+         password : sekirubeg
+```
+それぞれの一般ユーザーには6月の勤怠情報が記録されています。
+
+
 ## 使用技術
 ```
 PHP 7.4.9
@@ -81,8 +101,6 @@ MySQL 8.0.40
 ```
 開発環境
   管理者ログイン画面：http://localhost/admin/login
-    ・ 管理者のメールアドレス：admin@example.com
-    ・ 管理者のパスワード：sekirubeg
   一般ログイン画面：http://localhost/login
 phpMyAdmin: http://localhost:8080/
 ```
