@@ -63,8 +63,6 @@ mysql -u root -p
 > CREATE DATABASE test;
 > SHOW DATABASES;
 ```
-### PHP.Unitによるテスト
-
 ### PHP.Unitによるテストをを行うため以下のコマンドを実行してください
 ```
 php artisan key:generate --env=testing
